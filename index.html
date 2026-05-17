@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CBQA Global one</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;900&display=swap" rel="stylesheet">
+
+  <style>
+
+    *,*::before,*::after{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    body{
+      background:#fff;
+      font-family:'Poppins',sans-serif;
+      overflow-x:hidden;
+      overflow-y:auto;
+      min-height:100vh;
+      min-height:100dvh;
+      scroll-behavior:smooth;
+      -webkit-tap-highlight-color:transparent;
+    }
+
+    .mobile-layout{
+      display:none;
+    }
+
+    /* ═══════════════════════════════ DESKTOP ═══════════════════════════════ */
+
+    .hero{
+      position:relative;
+      min-height:100vh;
+      min-height:100dvh;
+      height:auto;
+      width:100%;
+      overflow-x:hidden;
+      overflow-y:visible;
+      display:flex;
+      flex-direction:column;
+      background:#fff;
+    }
+
+    .bg-main{
+      position:absolute;
+      inset:0;
+      background:url('assets/Background_C.png') no-repeat center;
+      background-size:contain;
+      opacity:.5;
+      pointer-events:none;
+      z-index:0;
+    }
+
+    .bg-lines{
+      position:absolute;
+      top:0;
+      right:0;
+      width:clamp(130px,13vw,280px);
+      pointer-events:none;
+      z-index:0;
+    }
+
+    .bg-right-fade{
+      position:absolute;
+      top:0;
+      right:0;
+      width:48%;
+      height:100%;
+      background:linear-gradient(
+        to right,
+        transparent 0%,
+        rgba(255,255,255,0.85) 30%,
+        #fff 60%
+      );
+      pointer-events:none;
+      z-index:0;
+    }
+
+    .hero > *:not(.bg-main):not(.bg-lines):not(.bg-right-fade){
+      position:relative;
+      z-index:1;
+    }
+
+    /* ── TOP LOGOS ── */
+
+    .top-logos{
+      display:flex;
+      align-items:center;
+      gap:clamp(8px,1vw,18px);
+      padding:clamp(16px,3.2vh,50px) 0 0 clamp(28px,5.5vw,120px);
+    }
+
+    .logo-cbqa{
+      height:clamp(44px,6.5vh,90px);
+      object-fit:contain;
+    }
+
+    .logo-nexora{
+      height:clamp(32px,4.8vh,70px);
+      object-fit:contain;
+      position:relative;
+      top:clamp(3px,0.6vh,12px);
+    }
+
+    /* ── HERO BODY ── */
+
+    .hero-body{
+      flex:1;
+      display:flex;
+      align-items:center;
+      position:relative;
+    }
+
+    /* ── LEFT CONTENT ──
+       Absolute-positioned at ~20% from left — this is correct for the visual layout.
+       Original: left:20%; top:40%; transform:translateY(-50%) — preserved. */
+
+    .hero-left{
+      position:absolute;
+      left:20%;
+      top:40%;
+      transform:translateY(-50%);
+    }
+
+    .brand-text{
+      font-size:clamp(18px,3vw,40px);
+      font-weight:500;
+      color:#111;
+      line-height:1;
+      white-space:nowrap;
+      letter-spacing:-0.01em;
+    }
+
+    .one-text{
+      font-size:clamp(90px,16vw,240px);
+      font-weight:900;
+      color:#319EA9;
+      line-height:.85;
+      white-space:nowrap;
+      letter-spacing:-0.04em;
+      margin-left:-3px;
+    }
+
+    /* desc-text: original margin-left:70%; width:30% preserved — works correctly
+       because parent (.hero-left) width is determined by "one" text (auto-width). */
+    .desc-text{
+      margin-top:clamp(8px,1.2vh,20px);
+      margin-left:70%;
+      font-size:clamp(12px,1vw,18px);
+      font-weight:300;
+      color:#555;
+      line-height:1.55;
+      width:30%;
+    }
+
+    /* ── RIGHT MENU ──
+       FIX: original had right:6vw + translateX(-3cm) + translateY(-1cm).
+       Physical cm units (1cm≈37.8px) are non-responsive across DPI/zoom levels.
+       Replace: right:6vw+translateX(-3cm) → right:clamp(90px,14vw,220px)
+                translateY(-50%)+translateY(-1cm) → translateY(calc(-50% - 2.5vh)) */
+
+    .hero-right{
+      position:absolute;
+      right:clamp(90px,14vw,220px);
+      top:50%;
+      transform:translateY(calc(-50% - 2.5vh));
+    }
+
+    .menu-panel{
+      width:clamp(280px,28vw,520px);
+    }
+
+    .menu-link{
+      text-decoration:none;
+      color:inherit;
+      display:block;
+    }
+
+    .menu-item{
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      gap:clamp(10px,1.2vw,26px);
+      padding:clamp(8px,1.2vh,20px) 0;
+      border-bottom:1.5px solid #ccc;
+      border-radius:6px;
+      transition:transform .22s ease, background .22s ease;
+      cursor:pointer;
+      min-width:0;
+    }
+
+    .menu-link:last-child .menu-item{
+      border-bottom:none;
+    }
+
+    .menu-group-divider{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:clamp(4px,0.8vh,12px) 0 clamp(3px,0.5vh,7px);
+      border-bottom:1.5px solid #ccc;
+    }
+
+    .menu-group-divider::before{
+      content:'';
+      flex:1;
+      height:1px;
+      background:linear-gradient(to right,transparent,#319EA9 60%,transparent);
+      opacity:.35;
+    }
+
+    .menu-group-divider span{
+      font-size:clamp(8px,0.65vw,12px);
+      font-weight:600;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:#319EA9;
+      white-space:nowrap;
+      opacity:.7;
+    }
+
+    .menu-group-divider::after{
+      content:'';
+      flex:1;
+      height:1px;
+      background:linear-gradient(to left,transparent,#319EA9 60%,transparent);
+      opacity:.35;
+    }
+
+    .menu-item:hover{
+      transform:translateX(10px);
+      background:rgba(49,158,169,.06);
+      padding-left:8px;
+    }
+
+    .menu-item:hover .menu-item-label span,
+    .menu-item:hover .menu-item-label strong{
+      color:#319EA9;
+    }
+
+    .menu-item img,
+    .menu-item svg{
+      width:clamp(42px,4.2vw,80px);
+      height:clamp(42px,4.2vw,80px);
+      flex:0 0 auto;
+      transition:transform .22s ease;
+      display:block;
+    }
+
+    .menu-item img{
+      object-fit:contain;
+    }
+
+    /* ── ICON BALANCE ── */
+
+    .custom-icon{
+      object-fit:contain;
+      transform-origin:center;
+      transition:transform .22s ease;
+    }
+
+    .icon-grc{
+      transform:scale(1.35);
+    }
+
+    .icon-academy{
+      transform:scale(1.65);
+    }
+
+    .menu-item:hover .icon-grc,
+    .m-menu-item:hover .icon-grc{
+      transform:scale(1.45);
+    }
+
+    .menu-item:hover .icon-academy,
+    .m-menu-item:hover .icon-academy{
+      transform:scale(1.75);
+    }
+
+    .menu-item-label{
+      flex:0 1 auto;
+      min-width:0;
+      text-align:left;
+      font-size:clamp(16px,2vw,40px);
+      color:#111;
+      line-height:1.1;
+      white-space:nowrap;
+    }
+
+    .menu-item-label span{
+      font-weight:300;
+    }
+
+    .menu-item-label strong{
+      font-weight:700;
+    }
+
+    /* ── FOOTER ── */
+
+    .hero-footer{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 clamp(24px,4.5vw,110px) clamp(14px,3.2vh,52px);
+    }
+
+    .service-desk{
+      display:flex;
+      align-items:center;
+      gap:clamp(5px,0.5vw,11px);
+      text-decoration:none;
+      color:inherit;
+      cursor:pointer;
+      transition:transform .2s ease;
+    }
+
+    .service-desk:hover{
+      transform:scale(1.05);
+    }
+
+    .service-desk img{
+      width:clamp(26px,2.5vw,52px);
+      height:clamp(26px,2.5vw,52px);
+      object-fit:contain;
+      flex:0 0 auto;
+    }
+
+    .service-text{
+      font-size:clamp(11px,0.9vw,18px);
+      font-weight:400;
+      color:#333;
+    }
+
+    .footer-text{
+      font-size:clamp(11px,1.1vw,24px);
+      color:#888;
+    }
+
+    .footer-text a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    .footer-text a:hover{
+      color:#319EA9;
+    }
+
+    /* ── RESPONSIVE BREAKPOINTS ──
+       All ranges use absolute positioning (same visual layout as default).
+       Only font sizes, position offsets, and panel widths are adjusted per range.
+       Fixes the 90%-zoom issue on 1024-1366px laptop screens.
+    */
+
+    /* Standard+ desktop: ≥1200px — larger brand/one text */
+    @media (min-width:1200px){
+
+      .brand-text{
+        font-size:clamp(40px,2.9vw,92px);
+      }
+
+      .one-text{
+        font-size:clamp(230px,16.5vw,500px);
+      }
+
+      .desc-text{
+        font-size:clamp(14px,1.08vw,40px);
+      }
+    }
+
+    /* Large desktop: ≥1441px */
+    @media (min-width:1441px){
+
+      .hero-right{
+        right:clamp(100px,6vw,160px);
+      }
+
+      .menu-panel{
+        width:clamp(280px,29vw,760px);
+      }
+
+      .menu-item{
+        gap:clamp(14px,1.5vw,42px);
+        padding:clamp(10px,1.5vh,32px) 0;
+      }
+
+      .menu-item img,
+      .menu-item svg{
+        width:clamp(40px,3vw,70px);
+        height:clamp(40px,3vw,70px);
+      }
+
+      .menu-item-label{
+        font-size:clamp(16px,1.4vw,26px);
+      }
+    }
+
+    /* Medium laptop: 1024px–1280px — PRIMARY 90%-zoom problem zone.
+       Reduce one-text & menu panel so nothing overlaps at 1280px. */
+    @media (min-width:1024px) and (max-width:1280px){
+
+      .hero-left{
+        left:16%;
+        top:42%;
+      }
+
+      .brand-text{
+        font-size:clamp(16px,2.2vw,32px);
+      }
+
+      .one-text{
+        font-size:clamp(80px,11.5vw,160px);
+      }
+
+      .desc-text{
+        font-size:clamp(11px,0.9vw,15px);
+      }
+
+      .hero-right{
+        right:clamp(60px,10vw,160px);
+      }
+
+      .menu-panel{
+        width:clamp(230px,27vw,380px);
+      }
+
+      .menu-item{
+        padding:clamp(7px,1.1vh,16px) 0;
+        gap:clamp(10px,1.1vw,20px);
+      }
+
+      .menu-item img,
+      .menu-item svg{
+        width:clamp(40px,4vw,62px);
+        height:clamp(40px,4vw,62px);
+      }
+
+      .menu-item-label{
+        font-size:clamp(15px,1.85vw,28px);
+      }
+
+      .hero-footer{
+        padding:0 clamp(30px,4vw,80px) clamp(14px,2.8vh,40px);
+      }
+    }
+
+    /* Small laptop / large tablet landscape: 769px–1023px */
+    @media (min-width:769px) and (max-width:1023px){
+
+      .hero-left{
+        left:8%;
+        top:44%;
+      }
+
+      .brand-text{
+        font-size:clamp(14px,1.8vw,22px);
+      }
+
+      .one-text{
+        font-size:clamp(60px,10vw,110px);
+      }
+
+      .desc-text{
+        font-size:clamp(10px,1vw,13px);
+        margin-left:65%;
+        width:35%;
+      }
+
+      .hero-right{
+        right:clamp(20px,4vw,60px);
+      }
+
+      .menu-panel{
+        width:clamp(200px,34vw,340px);
+      }
+
+      .menu-item{
+        padding:clamp(6px,1vh,12px) 0;
+        gap:clamp(8px,1.1vw,16px);
+      }
+
+      .menu-item img,
+      .menu-item svg{
+        width:clamp(34px,3.8vw,52px);
+        height:clamp(34px,3.8vw,52px);
+      }
+
+      .menu-item-label{
+        font-size:clamp(13px,1.8vw,22px);
+      }
+
+      .hero-footer{
+        padding:0 clamp(16px,3vw,56px) clamp(12px,2.5vh,30px);
+      }
+    }
+
+    /* ═══════════════════════════════ MOBILE ═══════════════════════════════ */
+
+    @media (max-width:768px){
+
+      body{
+        overflow-y:auto;
+        height:auto;
+      }
+
+      .hero{
+        display:none;
+      }
+
+      .mobile-layout{
+        display:flex;
+        flex-direction:column;
+        min-height:100vh;
+        min-height:100dvh;
+        position:relative;
+        background:#fff;
+        overflow:hidden;
+      }
+
+      .m-bg-main{
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        background:url('assets/Background_C.png') no-repeat center;
+        background-size:cover;
+        opacity:.18;
+        pointer-events:none;
+        z-index:0;
+      }
+
+      .m-bg-lines{
+        position:absolute;
+        top:0;
+        right:0;
+        width:130px;
+        pointer-events:none;
+        z-index:0;
+      }
+
+      .m-content{
+        position:relative;
+        z-index:1;
+        display:flex;
+        flex-direction:column;
+        flex:1;
+        padding-bottom:36px;
+      }
+
+      .m-logos{
+        display:flex;
+        align-items:center;
+        gap:10px;
+        padding:24px 20px 0;
+      }
+
+      .m-logo-cbqa{
+        height:clamp(42px,14vw,52px);
+        object-fit:contain;
+      }
+
+      .m-logo-nexora{
+        height:clamp(30px,10vw,38px);
+        object-fit:contain;
+        position:relative;
+        top:5px;
+      }
+
+      .m-hero-text{
+        padding:clamp(16px,4vw,22px);
+        position:relative;
+        padding-bottom:clamp(36px,10vw,52px);
+      }
+
+      .m-brand-text{
+        font-size:clamp(15px,4.2vw,18px);
+        font-weight:500;
+        color:#111;
+        margin-bottom:-6px;
+      }
+
+      .m-one-text{
+        font-size:clamp(64px,21vw,108px);
+        font-weight:900;
+        color:#319EA9;
+        line-height:.9;
+        margin-left:-3px;
+      }
+
+      .m-desc-text{
+        font-size:clamp(11px,3.2vw,13px);
+        font-weight:300;
+        color:#777;
+        line-height:1.5;
+        text-align:right;
+        position:absolute;
+        right:clamp(16px,4vw,22px);
+        bottom:clamp(-48px,-11vw,-36px);
+      }
+
+      .m-menu-panel{
+        margin:56px 16px 0;
+        background:rgba(255,255,255,.82);
+        backdrop-filter:blur(6px);
+        border-radius:14px;
+        padding:2px 16px;
+        box-shadow:0 2px 20px rgba(0,0,0,.06);
+      }
+
+      .m-menu-link{
+        text-decoration:none;
+        color:inherit;
+        display:block;
+        transition:all .22s ease;
+      }
+
+      .m-menu-item{
+        display:flex;
+        align-items:center;
+        gap:14px;
+        padding:14px 6px;
+        border-bottom:1px solid #e0e0e0;
+        border-radius:8px;
+        transition:background .22s ease, transform .22s ease;
+        cursor:pointer;
+      }
+
+      .m-menu-link:active .m-menu-item{
+        background:rgba(49,158,169,.08);
+        transform:translateX(4px);
+      }
+
+      .m-menu-link:last-child .m-menu-item{
+        border-bottom:none;
+      }
+
+      .m-menu-group-divider{
+        display:flex;
+        align-items:center;
+        gap:8px;
+        padding:10px 0 6px;
+        border-bottom:1px solid #e0e0e0;
+      }
+
+      .m-menu-group-divider::before,
+      .m-menu-group-divider::after{
+        content:'';
+        flex:1;
+        height:1px;
+        background:linear-gradient(to right,transparent,#319EA9 60%,transparent);
+        opacity:.3;
+      }
+
+      .m-menu-group-divider::after{
+        background:linear-gradient(to left,transparent,#319EA9 60%,transparent);
+      }
+
+      .m-menu-group-divider span{
+        font-size:10px;
+        font-weight:600;
+        letter-spacing:.08em;
+        text-transform:uppercase;
+        color:#319EA9;
+        opacity:.65;
+        white-space:nowrap;
+      }
+
+      .m-menu-item img,
+      .m-menu-item svg{
+        width:46px;
+        height:46px;
+        flex-shrink:0;
+        transition:transform .22s ease;
+      }
+
+      .m-menu-item img{
+        object-fit:contain;
+      }
+
+      .m-menu-item svg{
+        display:block;
+      }
+
+      .m-menu-item .icon-grc{
+        transform:scale(1.08);
+      }
+
+      .m-menu-item .icon-academy{
+        transform:scale(1.18);
+      }
+
+      .m-menu-link:active .m-menu-item img,
+      .m-menu-link:active .m-menu-item svg{
+        transform:scale(1.1);
+      }
+
+      .m-menu-link:active .m-menu-item .icon-grc{
+        transform:scale(1.16);
+      }
+
+      .m-menu-link:active .m-menu-item .icon-academy{
+        transform:scale(1.26);
+      }
+
+      .m-menu-label{
+        font-size:18px;
+        color:#111;
+        line-height:1.2;
+        transition:color .22s ease;
+      }
+
+      .m-menu-label span{
+        font-weight:300;
+      }
+
+      .m-menu-label strong{
+        font-weight:700;
+      }
+
+      .m-menu-link:active .m-menu-label,
+      .m-menu-link:active .m-menu-label span,
+      .m-menu-link:active .m-menu-label strong{
+        color:#319EA9;
+      }
+
+      .m-service-desk{
+        display:flex;
+        align-items:center;
+        gap:8px;
+        justify-content:center;
+        margin-top:28px;
+        text-decoration:none;
+        transition:transform .2s ease;
+      }
+
+      .m-service-desk:active{
+        transform:scale(0.95);
+      }
+
+      .m-service-desk img{
+        width:40px;
+        height:40px;
+        object-fit:contain;
+        flex:0 0 auto;
+        transition:transform .2s ease;
+      }
+
+      .m-service-desk:active img{
+        transform:scale(1.15);
+      }
+
+      .m-service-text{
+        font-size:14px;
+        font-weight:400;
+        color:#444;
+        transition:color .2s ease;
+      }
+
+      .m-service-desk:active .m-service-text{
+        color:#319EA9;
+      }
+
+      .m-footer-text{
+        font-size:12px;
+        color:#bbb;
+        text-align:center;
+        margin-top:10px;
+      }
+
+      .m-footer-text a{
+        color:inherit;
+        text-decoration:none;
+      }
+    }
+
+    @media (max-width:480px){
+
+      .m-logos{
+        padding:18px 16px 0;
+      }
+
+      .m-logo-cbqa{
+        height:clamp(36px,12vw,44px);
+      }
+
+      .m-logo-nexora{
+        height:clamp(26px,9vw,32px);
+      }
+
+      .m-hero-text{
+        padding:clamp(12px,3vw,16px);
+        padding-bottom:clamp(28px,8vw,40px);
+      }
+
+      .m-brand-text{
+        font-size:clamp(13px,3.8vw,15px);
+        margin-bottom:-4px;
+      }
+
+      .m-one-text{
+        font-size:clamp(56px,19vw,92px);
+      }
+
+      .m-desc-text{
+        font-size:clamp(10px,2.8vw,11px);
+        right:clamp(12px,3vw,16px);
+        bottom:clamp(-40px,-9vw,-28px);
+      }
+
+      .m-menu-panel{
+        margin:48px 12px 0;
+        padding:2px 12px;
+        border-radius:12px;
+      }
+
+      .m-menu-item{
+        gap:12px;
+        padding:12px 4px;
+      }
+
+      .m-menu-item img,
+      .m-menu-item svg{
+        width:40px;
+        height:40px;
+      }
+
+      .m-menu-label{
+        font-size:16px;
+      }
+
+      .m-service-desk{
+        margin-top:24px;
+      }
+
+      .m-service-desk img{
+        width:36px;
+        height:36px;
+      }
+
+      .m-service-text{
+        font-size:13px;
+      }
+
+      .m-footer-text{
+        font-size:11px;
+        margin-top:8px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- ══════════════ DESKTOP ══════════════ -->
+
+  <div class="hero">
+
+    <div class="bg-main"></div>
+    <div class="bg-right-fade"></div>
+
+    <img src="assets/garis_koneksi.png" class="bg-lines" alt="" />
+
+    <!-- Top logos -->
+
+    <div class="top-logos">
+
+      <a href="https://www.cbqaglobal.com/" target="_blank">
+        <img src="assets/Logo_CBQA.png" class="logo-cbqa" alt="CBQA Global">
+      </a>
+
+      <a href="https://nexoratech.co/" target="_blank">
+        <img src="assets/Logo_Nexora_Part.png" class="logo-nexora" alt="Powered by Nexora">
+      </a>
+
+    </div>
+
+    <!-- Hero body -->
+
+    <div class="hero-body">
+
+      <!-- Left -->
+
+      <div class="hero-left">
+
+        <div class="brand-text">CBQA Global</div>
+
+        <div class="one-text">one</div>
+
+        <div class="desc-text">
+          Access all your services<br>
+          quickly and seamlessly.
+        </div>
+
+      </div>
+
+      <!-- Right -->
+
+      <div class="hero-right">
+
+        <div class="menu-panel">
+
+          <a href="https://oneconnect.cbqaglobal.co.id/register" target="_blank" class="menu-link">
+            <div class="menu-item">
+              <img src="assets/Icon_one_boarding.png" alt="one boarding">
+              <div class="menu-item-label">
+                <span>one </span><strong>boarding</strong>
+              </div>
+            </div>
+          </a>
+
+          <a href="https://oneconnect.cbqaglobal.co.id/signin" target="_blank" class="menu-link">
+            <div class="menu-item">
+              <img src="assets/Icon_one_connect.png" alt="one connect">
+              <div class="menu-item-label">
+                <span>one </span><strong>connect</strong>
+              </div>
+            </div>
+          </a>
+
+          <a href="https://onedatahub.cbqaglobal.co.id/masterdata" target="_blank" class="menu-link">
+            <div class="menu-item">
+              <img src="assets/Icon_one_hub.png" alt="one hub">
+              <div class="menu-item-label">
+                <span>one </span><strong>hub</strong>
+              </div>
+            </div>
+          </a>
+
+          <a href="https://onealpha.cbqaglobal.co.id/login" target="_blank" class="menu-link">
+            <div class="menu-item">
+              <img src="assets/Icon_one_alpha.png" alt="one alpha">
+              <div class="menu-item-label">
+                <span>one </span><strong>alpha</strong>
+              </div>
+            </div>
+          </a>
+
+          <!-- ONE GRC -->
+
+          <a href="https://onegrc.cbqaglobal.co.id/" target="_blank" class="menu-link">
+            <div class="menu-item">
+
+              <img src="assets/Icon_onegrc.png"
+                   alt="one grc"
+                   class="custom-icon icon-grc">
+
+              <div class="menu-item-label">
+                <span>one </span><strong>grc</strong>
+              </div>
+
+            </div>
+          </a>
+
+          <a href="https://audit-q.cbqaglobal.co.id/" target="_blank" class="menu-link">
+            <div class="menu-item">
+
+              <svg class="icon-auditq" viewBox="0 0 64 64" stroke="#319EA9" fill="none" stroke-width="2.5">
+                <circle cx="30" cy="30" r="16"/>
+                <path d="M42 42l10 10"/>
+              </svg>
+
+              <div class="menu-item-label">
+                <span>audit</span><strong>Q</strong>
+              </div>
+
+            </div>
+          </a>
+
+          <!-- ACADEMY -->
+
+          <a href="https://academy.cbqaglobal.co.id/" target="_blank" class="menu-link">
+            <div class="menu-item">
+
+              <img src="assets/Icon_Training Icon.png"
+                   alt="CBQA Global Academy"
+                   class="custom-icon icon-academy">
+
+              <div class="menu-item-label">
+                <span>CBQA Global </span><strong>academy</strong>
+              </div>
+
+            </div>
+          </a>
+
+          <a href="https://pmaudit.cbqaglobal.co.id/index.php/signin" target="_blank" class="menu-link">
+            <div class="menu-item">
+
+              <svg class="icon-pm" viewBox="0 0 64 64" stroke="#319EA9" fill="none" stroke-width="2.5">
+                <circle cx="32" cy="32" r="8"/>
+                <path d="M32 12v6M32 46v6M12 32h6M46 32h6
+                M18 18l4 4M42 42l4 4
+                M18 46l4-4M42 22l4-4"/>
+              </svg>
+
+              <div class="menu-item-label">
+                <span>PM </span><strong>Tool</strong>
+              </div>
+
+            </div>
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="hero-footer">
+      <a href="https://support.nexoratech.co/login" class="service-desk">
+        <img src="assets/Icon_service_desk .png" alt="Service Desk">
+        <span class="service-text">Service Desk</span>
+      </a>
+
+      <div class="footer-text">
+        <a href="https://www.cbqaglobal.com" target="_blank">
+          www.cbqaglobal.com
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════ MOBILE ══════════════ -->
+
+  <div class="mobile-layout">
+
+    <div class="m-bg-main"></div>
+
+    <img src="assets/garis_koneksi.png" class="m-bg-lines" alt="" />
+
+    <div class="m-content">
+
+      <!-- Top logos -->
+      <div class="m-logos">
+        <a href="https://www.cbqaglobal.com/" target="_blank">
+          <img src="assets/Logo_CBQA.png" class="m-logo-cbqa" alt="CBQA Global">
+        </a>
+        <a href="https://nexoratech.co/" target="_blank">
+          <img src="assets/Logo_Nexora_Part.png" class="m-logo-nexora" alt="Powered by Nexora">
+        </a>
+      </div>
+
+      <!-- Hero text -->
+      <div class="m-hero-text">
+        <div class="m-brand-text">CBQA Global</div>
+        <div class="m-one-text">one</div>
+        <div class="m-desc-text">
+          Access all your<br>services quickly.
+        </div>
+      </div>
+
+      <!-- Menu -->
+      <div class="m-menu-panel">
+
+        <a href="https://oneconnect.cbqaglobal.co.id/register" target="_blank" class="m-menu-link">
+          <div class="m-menu-item">
+            <img src="assets/Icon_one_boarding.png" alt="one boarding">
+            <div class="m-menu-label">
+              <span>one </span><strong>boarding</strong>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://oneconnect.cbqaglobal.co.id/" target="_blank" class="m-menu-link">
+          <div class="m-menu-item">
+            <img src="assets/Icon_one_connect.png" alt="one connect">
+            <div class="m-menu-label">
+              <span>one </span><strong>connect</strong>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://onedatahub.cbqaglobal.co.id/masterdata" target="_blank" class="m-menu-link">
+          <div class="m-menu-item">
+            <img src="assets/Icon_one_hub.png" alt="one hub">
+            <div class="m-menu-label">
+              <span>one </span><strong>hub</strong>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://onealpha.cbqaglobal.co.id/login" target="_blank" class="m-menu-link">
+          <div class="m-menu-item">
+            <img src="assets/Icon_one_alpha.png" alt="one alpha">
+            <div class="m-menu-label">
+              <span>one </span><strong>alpha</strong>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://onegrc.cbqaglobal.co.id/" target="_blank" class="m-menu-link">
+          <div class="m-menu-item">
+            <img src="assets/Icon_onegrc.png" alt="one grc" class="custom-icon icon-grc">
+            <div class="m-menu-label">
+              <span>one </span><strong>grc</strong>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://audit-q.cbqaglobal.co.id/" target="_blank" class="m-menu-link">
+          <div class="m-menu-item">
+            <svg class="icon-auditq" viewBox="0 0 64 64" stroke="#319EA9" fill="none" stroke-width="2.5">
+              <circle cx="30" cy="30" r="16"/>
+              <path d="M42 42l10 10"/>
+            </svg>
+            <div class="m-menu-label">
+              <span>audit</span><strong>Q</strong>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://academy.cbqaglobal.co.id/" target="_blank" class="m-menu-link">
+          <div class="m-menu-item">
+            <img src="assets/Icon_Training Icon.png" alt="CBQA Global Academy" class="custom-icon icon-academy">
+            <div class="m-menu-label">
+              <span>CBQA Global </span><strong>Academy</strong>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://pmaudit.cbqaglobal.co.id/index.php/signin" target="_blank" class="m-menu-link">
+          <div class="m-menu-item">
+            <svg class="icon-pm" viewBox="0 0 64 64" stroke="#319EA9" fill="none" stroke-width="2.5">
+              <circle cx="32" cy="32" r="8"/>
+              <path d="M32 12v6M32 46v6M12 32h6M46 32h6
+              M18 18l4 4M42 42l4 4
+              M18 46l4-4M42 22l4-4"/>
+            </svg>
+            <div class="m-menu-label">
+              <span>PM </span><strong>Tool</strong>
+            </div>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- Service desk -->
+      <a href="https://support.nexoratech.co/login" target="_blank" class="m-service-desk">
+        <img src="assets/Icon_service_desk .png" alt="Service Desk">
+        <span class="m-service-text">Service Desk</span>
+      </a>
+
+      <div class="m-footer-text">
+        <a href="https://www.cbqaglobal.com" target="_blank">
+          www.cbqaglobal.com
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
