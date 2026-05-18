@@ -270,8 +270,8 @@
 
     .menu-item img,
     .menu-item svg{
-      width:clamp(42px,4.2vw,80px);
-      height:clamp(42px,4.2vw,80px);
+      width:clamp(42px,4.2vw,120px);
+      height:clamp(42px,4.2vw,120px);
       flex:0 0 auto;
       transition:transform .22s ease;
       display:block;
@@ -289,22 +289,31 @@
       transition:transform .22s ease;
     }
 
+    .icon-hub{
+      transform:scale(1.35);
+    }
+
     .icon-grc{
-      transform:scale(1.1);
+      transform:scale(1.25);
     }
 
     .icon-academy{
-      transform:scale(1.1);
+      transform:scale(1.25);
+    }
+
+    .menu-item:hover .icon-hub,
+    .m-menu-item:hover .icon-hub{
+      transform:scale(1.45);
     }
 
     .menu-item:hover .icon-grc,
     .m-menu-item:hover .icon-grc{
-      transform:scale(1.18);
+      transform:scale(1.35);
     }
 
     .menu-item:hover .icon-academy,
     .m-menu-item:hover .icon-academy{
-      transform:scale(1.18);
+      transform:scale(1.35);
     }
 
     .menu-item-label{
@@ -709,12 +718,16 @@
         display:block;
       }
 
+      .m-menu-item .icon-hub{
+        transform:scale(1.35);
+      }
+
       .m-menu-item .icon-grc{
-        transform:scale(1.08);
+        transform:scale(1.25);
       }
 
       .m-menu-item .icon-academy{
-        transform:scale(1.18);
+        transform:scale(1.25);
       }
 
       .m-menu-link:active .m-menu-item img,
@@ -722,12 +735,16 @@
         transform:scale(1.1);
       }
 
+      .m-menu-link:active .m-menu-item .icon-hub{
+        transform:scale(1.45);
+      }
+
       .m-menu-link:active .m-menu-item .icon-grc{
-        transform:scale(1.16);
+        transform:scale(1.35);
       }
 
       .m-menu-link:active .m-menu-item .icon-academy{
-        transform:scale(1.26);
+        transform:scale(1.35);
       }
 
       .m-menu-label{
@@ -950,7 +967,7 @@
 
           <a href="https://onedatahub.cbqaglobal.co.id/masterdata" target="_blank" class="menu-link">
             <div class="menu-item">
-              <img src="assets/Icon_one_hub.png" alt="one hub">
+              <img src="assets/Icon_one_hub.png" alt="one hub" class="custom-icon icon-hub">
               <div class="menu-item-label">
                 <span>one </span><strong>hub</strong>
               </div>
@@ -1071,7 +1088,7 @@
 
         <a href="https://onedatahub.cbqaglobal.co.id/masterdata" target="_blank" class="m-menu-link">
           <div class="m-menu-item">
-            <img src="assets/Icon_one_hub.png" alt="one hub">
+            <img src="assets/Icon_one_hub.png" alt="one hub" class="custom-icon icon-hub">
             <div class="m-menu-label">
               <span>one </span><strong>hub</strong>
             </div>
