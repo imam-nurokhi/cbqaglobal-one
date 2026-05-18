@@ -62,10 +62,8 @@
       position:relative;
       min-height:100vh;
       min-height:100dvh;
-      height:auto;
       width:100%;
-      overflow-x:hidden;
-      overflow-y:visible;
+      overflow:hidden;
       display:flex;
       flex-direction:column;
       background:#fff;
@@ -74,7 +72,7 @@
     .bg-main{
       position:absolute;
       inset:0;
-      background:url('assets/Background_C.png') no-repeat center;
+      background:url('assets/Background_C.png') no-repeat center center;
       background-size:contain;
       opacity:.18;
       pointer-events:none;
@@ -85,7 +83,7 @@
       position:absolute;
       top:0;
       right:0;
-      width:clamp(130px,13vw,280px);
+      width:clamp(100px,11vw,220px);
       pointer-events:none;
       z-index:0;
     }
@@ -116,44 +114,43 @@
     .top-logos{
       display:flex;
       align-items:center;
-      gap:clamp(8px,1vw,18px);
-      padding:clamp(16px,3.2vh,50px) 0 0 clamp(28px,5.5vw,120px);
+      gap:clamp(6px,0.8vw,16px);
+      padding:clamp(14px,2.8vh,40px) 0 0 clamp(24px,4.5vw,90px);
+      flex-shrink:0;
     }
 
     .logo-cbqa{
-      height:clamp(72px,10.5vh,136px);
+      height:clamp(56px,8vh,110px);
       object-fit:contain;
     }
 
     .logo-nexora{
-      height:clamp(52px,7.8vh,106px);
+      height:clamp(40px,5.8vh,84px);
       object-fit:contain;
       position:relative;
-      top:clamp(5px,1vh,18px);
+      top:clamp(4px,0.8vh,12px);
     }
 
-    /* ── HERO BODY ── */
+    /* ── HERO BODY — FLEXBOX (no absolute positioning) ── */
 
     .hero-body{
       flex:1;
       display:flex;
       align-items:center;
-      position:relative;
+      justify-content:space-between;
+      padding:0 clamp(24px,5vw,100px) 0 clamp(24px,4.5vw,90px);
+      gap:clamp(16px,3vw,60px);
+      min-height:0;
     }
 
-    /* ── LEFT CONTENT ──
-       Absolute-positioned at ~20% from left — this is correct for the visual layout.
-       Original: left:20%; top:40%; transform:translateY(-50%) — preserved. */
-
     .hero-left{
-      position:absolute;
-      left:20%;
-      top:40%;
-      transform:translateY(-50%);
+      flex:0 1 auto;
+      position:relative;
+      padding-bottom:clamp(28px,4vh,56px);
     }
 
     .brand-text{
-      font-size:clamp(18px,3vw,40px);
+      font-size:clamp(14px,1.6vw,28px);
       font-weight:500;
       color:#111;
       line-height:1;
@@ -162,7 +159,7 @@
     }
 
     .one-text{
-      font-size:clamp(90px,16vw,240px);
+      font-size:clamp(72px,11vw,160px);
       font-weight:900;
       color:#319EA9;
       line-height:.85;
@@ -171,33 +168,27 @@
       margin-left:-3px;
     }
 
-    /* desc-text: original margin-left:70%; width:30% preserved — works correctly
-       because parent (.hero-left) width is determined by "one" text (auto-width). */
     .desc-text{
-      margin-top:clamp(8px,1.2vh,20px);
-      margin-left:70%;
-      font-size:clamp(12px,1vw,18px);
+      position:absolute;
+      bottom:0;
+      right:0;
+      font-size:clamp(11px,0.85vw,15px);
       font-weight:300;
       color:#555;
       line-height:1.55;
-      width:30%;
+      text-align:right;
+      white-space:nowrap;
     }
 
-    /* ── RIGHT MENU ──
-       FIX: original had right:6vw + translateX(-3cm) + translateY(-1cm).
-       Physical cm units (1cm≈37.8px) are non-responsive across DPI/zoom levels.
-       Replace: right:6vw+translateX(-3cm) → right:clamp(90px,14vw,220px)
-                translateY(-50%)+translateY(-1cm) → translateY(calc(-50% - 2.5vh)) */
+    /* ── RIGHT MENU ── */
 
     .hero-right{
-      position:absolute;
-      right:clamp(90px,14vw,220px);
-      top:50%;
-      transform:translateY(calc(-50% - 2.5vh));
+      flex:0 0 auto;
     }
 
     .menu-panel{
-      width:clamp(280px,28vw,520px);
+      width:fit-content;
+      min-width:clamp(180px,18vw,340px);
     }
 
     .menu-link{
@@ -210,8 +201,8 @@
       display:flex;
       align-items:center;
       justify-content:flex-start;
-      gap:clamp(10px,1.2vw,26px);
-      padding:clamp(8px,1.2vh,20px) 0;
+      gap:clamp(7px,0.65vw,12px);
+      padding:clamp(6px,0.75vh,11px) 0;
       border-bottom:1.5px solid #ccc;
       border-radius:6px;
       transition:transform .22s ease, background .22s ease;
@@ -240,7 +231,7 @@
     }
 
     .menu-group-divider span{
-      font-size:clamp(8px,0.65vw,12px);
+      font-size:clamp(8px,0.6vw,11px);
       font-weight:600;
       letter-spacing:.08em;
       text-transform:uppercase;
@@ -270,8 +261,8 @@
 
     .menu-item img,
     .menu-item svg{
-      width:clamp(42px,4.2vw,120px);
-      height:clamp(42px,4.2vw,120px);
+      width:clamp(30px,2.8vw,48px);
+      height:clamp(30px,2.8vw,48px);
       flex:0 0 auto;
       transition:transform .22s ease;
       display:block;
@@ -290,7 +281,7 @@
     }
 
     .icon-hub{
-      transform:scale(2);
+      transform:scale(1.35);
     }
 
     .icon-grc{
@@ -298,12 +289,12 @@
     }
 
     .icon-academy{
-      transform:scale(1.8);
+      transform:scale(1.25);
     }
 
     .menu-item:hover .icon-hub,
     .m-menu-item:hover .icon-hub{
-      transform:scale(1.85);
+      transform:scale(1.45);
     }
 
     .menu-item:hover .icon-grc,
@@ -313,14 +304,14 @@
 
     .menu-item:hover .icon-academy,
     .m-menu-item:hover .icon-academy{
-      transform:scale(1.75);
+      transform:scale(1.35);
     }
 
     .menu-item-label{
       flex:0 1 auto;
       min-width:0;
       text-align:left;
-      font-size:clamp(16px,2vw,40px);
+      font-size:clamp(14px,1.6vw,24px);
       color:#111;
       line-height:1.1;
       white-space:nowrap;
@@ -340,13 +331,14 @@
       display:flex;
       align-items:center;
       justify-content:space-between;
-      padding:0 clamp(24px,4.5vw,110px) clamp(14px,3.2vh,52px);
+      padding:0 clamp(24px,5vw,100px) clamp(12px,2.8vh,44px);
+      flex-shrink:0;
     }
 
     .service-desk{
       display:flex;
       align-items:center;
-      gap:clamp(5px,0.5vw,11px);
+      gap:clamp(5px,0.5vw,10px);
       text-decoration:none;
       color:inherit;
       cursor:pointer;
@@ -358,20 +350,20 @@
     }
 
     .service-desk img{
-      width:clamp(36px,3.4vw,68px);
-      height:clamp(36px,3.4vw,68px);
+      width:clamp(28px,2.8vw,52px);
+      height:clamp(28px,2.8vw,52px);
       object-fit:contain;
       flex:0 0 auto;
     }
 
     .service-text{
-      font-size:clamp(13px,1.15vw,22px);
+      font-size:clamp(12px,1vw,18px);
       font-weight:400;
       color:#333;
     }
 
     .footer-text{
-      font-size:clamp(11px,1.1vw,20px);
+      font-size:clamp(11px,0.95vw,17px);
       color:#aaa;
       font-weight:300;
       letter-spacing:0.01em;
@@ -382,155 +374,42 @@
       text-decoration:none;
     }
 
-    /* ── RESPONSIVE BREAKPOINTS ──
-       All ranges use absolute positioning (same visual layout as default).
-       Only font sizes, position offsets, and panel widths are adjusted per range.
-       Fixes the 90%-zoom issue on 1024-1366px laptop screens.
-    */
-
-    /* Standard+ desktop: ≥1200px — larger brand/one text */
-    @media (min-width:1200px){
-
-      .brand-text{
-        font-size:clamp(40px,2.9vw,92px);
-      }
-
-      .one-text{
-        font-size:clamp(230px,16.5vw,500px);
-      }
-
-      .desc-text{
-        font-size:clamp(14px,1.08vw,40px);
-      }
-    }
-
-    /* Large desktop: ≥1441px */
-    @media (min-width:1441px){
-
-      .hero-right{
-        right:clamp(100px,6vw,160px);
-      }
-
-      .menu-panel{
-        width:clamp(280px,29vw,760px);
-      }
-
-      .menu-item{
-        gap:clamp(16px,1.8vw,48px);
-        padding:clamp(10px,1.5vh,32px) 0;
-      }
-
-      .menu-item img,
-      .menu-item svg{
-        width:clamp(55px,5.5vw,120px);
-        height:clamp(55px,5.5vw,120px);
-      }
-
-      .menu-item-label{
-        font-size:clamp(18px,1.6vw,32px);
-      }
-
-      .hero-left{
-        left:24%;
-      }
-    }
-
-    /* Medium laptop: 1024px–1280px — PRIMARY 90%-zoom problem zone.
-       Reduce one-text & menu panel so nothing overlaps at 1280px. */
-    @media (min-width:1024px) and (max-width:1280px){
-
-      .hero-left{
-        left:16%;
-        top:42%;
-      }
-
-      .brand-text{
-        font-size:clamp(16px,2.2vw,32px);
-      }
-
-      .one-text{
-        font-size:clamp(80px,11.5vw,160px);
-      }
-
-      .desc-text{
-        font-size:clamp(11px,0.9vw,15px);
-      }
-
-      .hero-right{
-        right:clamp(60px,10vw,160px);
-      }
-
-      .menu-panel{
-        width:clamp(230px,27vw,380px);
-      }
-
-      .menu-item{
-        padding:clamp(7px,1.1vh,16px) 0;
-        gap:clamp(10px,1.1vw,20px);
-      }
-
-      .menu-item img,
-      .menu-item svg{
-        width:clamp(40px,4vw,62px);
-        height:clamp(40px,4vw,62px);
-      }
-
-      .menu-item-label{
-        font-size:clamp(15px,1.85vw,28px);
-      }
-
-      .hero-footer{
-        padding:0 clamp(30px,4vw,80px) clamp(14px,2.8vh,40px);
-      }
-    }
-
-    /* Small laptop / large tablet landscape: 769px–1023px */
+    /* ── TABLET LANDSCAPE: 769px–1023px ── */
     @media (min-width:769px) and (max-width:1023px){
 
-      .hero-left{
-        left:8%;
-        top:44%;
+      .top-logos{
+        padding:clamp(12px,2vh,24px) 0 0 clamp(16px,3vw,40px);
       }
 
-      .brand-text{
-        font-size:clamp(14px,1.8vw,22px);
+      .hero-body{
+        padding:0 clamp(16px,3vw,48px) 0 clamp(16px,3vw,48px);
+        gap:clamp(12px,2vw,32px);
       }
 
       .one-text{
-        font-size:clamp(60px,10vw,110px);
+        font-size:clamp(56px,8.5vw,96px);
       }
 
-      .desc-text{
-        font-size:clamp(10px,1vw,13px);
-        margin-left:65%;
-        width:35%;
-      }
-
-      .hero-right{
-        right:clamp(20px,4vw,60px);
+      .brand-text{
+        font-size:clamp(12px,1.3vw,18px);
       }
 
       .menu-panel{
-        width:clamp(200px,34vw,340px);
-      }
-
-      .menu-item{
-        padding:clamp(6px,1vh,12px) 0;
-        gap:clamp(8px,1.1vw,16px);
+        min-width:clamp(160px,24vw,260px);
       }
 
       .menu-item img,
       .menu-item svg{
-        width:clamp(34px,3.8vw,52px);
-        height:clamp(34px,3.8vw,52px);
+        width:clamp(24px,3vw,36px);
+        height:clamp(24px,3vw,36px);
       }
 
       .menu-item-label{
-        font-size:clamp(13px,1.8vw,22px);
+        font-size:clamp(13px,1.5vw,18px);
       }
 
       .hero-footer{
-        padding:0 clamp(16px,3vw,56px) clamp(12px,2.5vh,30px);
+        padding:0 clamp(16px,3vw,48px) clamp(10px,2vh,24px);
       }
     }
 
@@ -658,7 +537,7 @@
       .m-menu-item{
         display:flex;
         align-items:center;
-        gap:14px;
+        gap:10px;
         padding:14px 6px;
         border-bottom:1px solid #e0e0e0;
         border-radius:8px;
@@ -708,8 +587,8 @@
 
       .m-menu-item img,
       .m-menu-item svg{
-        width:46px;
-        height:46px;
+        width:54px;
+        height:54px;
         flex-shrink:0;
         transition:transform .22s ease;
       }
@@ -865,14 +744,14 @@
       }
 
       .m-menu-item{
-        gap:12px;
+        gap:9px;
         padding:12px 4px;
       }
 
       .m-menu-item img,
       .m-menu-item svg{
-        width:40px;
-        height:40px;
+        width:46px;
+        height:46px;
       }
 
       .m-menu-label{

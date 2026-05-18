@@ -3,33 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CBQA Global one — Access All Your Services</title>
-
-  <!-- SEO -->
-  <meta name="description" content="CBQA Global one — one platform to access all your services: boarding, connect, hub, alpha, grc, and academy. Quickly and seamlessly.">
-  <meta name="keywords" content="CBQA Global, one platform, one boarding, one connect, one hub, one alpha, one grc, one academy, cbqaglobal">
-  <meta name="author" content="CBQA Global">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://one.cbqaglobal.com/">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="assets/Logo_CBQA.png">
-  <link rel="apple-touch-icon" href="assets/Logo_CBQA.png">
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://one.cbqaglobal.com/">
-  <meta property="og:title" content="CBQA Global one — Access All Your Services">
-  <meta property="og:description" content="One platform to access all CBQA Global services: boarding, connect, hub, alpha, grc, and academy.">
-  <meta property="og:image" content="assets/Logo_CBQA.png">
-  <meta property="og:site_name" content="CBQA Global one">
-  <meta property="og:locale" content="en_US">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="CBQA Global one — Access All Your Services">
-  <meta name="twitter:description" content="One platform to access all CBQA Global services quickly and seamlessly.">
-  <meta name="twitter:image" content="assets/Logo_CBQA.png">
+  <title>CBQA Global one</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;900&display=swap" rel="stylesheet">
 
@@ -76,7 +50,7 @@
       inset:0;
       background:url('assets/Background_C.png') no-repeat center;
       background-size:contain;
-      opacity:.18;
+      opacity:.5;
       pointer-events:none;
       z-index:0;
     }
@@ -85,7 +59,7 @@
       position:absolute;
       top:0;
       right:0;
-      width:clamp(130px,13vw,280px);
+      width:clamp(180px,16vw,300px);
       pointer-events:none;
       z-index:0;
     }
@@ -116,20 +90,20 @@
     .top-logos{
       display:flex;
       align-items:center;
-      gap:clamp(8px,1vw,18px);
-      padding:clamp(16px,3.2vh,50px) 0 0 clamp(28px,5.5vw,120px);
+      gap:clamp(10px,1vw,18px);
+      padding:clamp(20px,3.5vh,50px) 0 0 clamp(50px,6vw,120px);
     }
 
     .logo-cbqa{
-      height:clamp(72px,10.5vh,136px);
+      height:clamp(52px,7vh,90px);
       object-fit:contain;
     }
 
     .logo-nexora{
-      height:clamp(52px,7.8vh,106px);
+      height:clamp(40px,5.5vh,70px);
       object-fit:contain;
       position:relative;
-      top:clamp(5px,1vh,18px);
+      top:clamp(4px,0.8vh,12px);
     }
 
     /* ── HERO BODY ── */
@@ -140,10 +114,6 @@
       align-items:center;
       position:relative;
     }
-
-    /* ── LEFT CONTENT ──
-       Absolute-positioned at ~20% from left — this is correct for the visual layout.
-       Original: left:20%; top:40%; transform:translateY(-50%) — preserved. */
 
     .hero-left{
       position:absolute;
@@ -171,8 +141,6 @@
       margin-left:-3px;
     }
 
-    /* desc-text: original margin-left:70%; width:30% preserved — works correctly
-       because parent (.hero-left) width is determined by "one" text (auto-width). */
     .desc-text{
       margin-top:clamp(8px,1.2vh,20px);
       margin-left:70%;
@@ -183,18 +151,18 @@
       width:30%;
     }
 
-    /* ── RIGHT MENU ──
-       FIX: original had right:6vw + translateX(-3cm) + translateY(-1cm).
-       Physical cm units (1cm≈37.8px) are non-responsive across DPI/zoom levels.
-       Replace: right:6vw+translateX(-3cm) → right:clamp(90px,14vw,220px)
-                translateY(-50%)+translateY(-1cm) → translateY(calc(-50% - 2.5vh)) */
+    /* ── RIGHT MENU ── */
 
     .hero-right{
-      position:absolute;
-      right:clamp(90px,14vw,220px);
-      top:50%;
-      transform:translateY(calc(-50% - 2.5vh));
-    }
+  position:absolute;
+  right:6vw;
+  top:50%;
+
+  transform:
+    translateY(-50%)
+    translateX(-3cm)
+    translateY(-1cm);
+}
 
     .menu-panel{
       width:clamp(280px,28vw,520px);
@@ -210,8 +178,8 @@
       display:flex;
       align-items:center;
       justify-content:flex-start;
-      gap:clamp(10px,1.2vw,26px);
-      padding:clamp(8px,1.2vh,20px) 0;
+      gap:clamp(14px,1.4vw,28px);
+      padding:clamp(10px,1.4vh,22px) 0;
       border-bottom:1.5px solid #ccc;
       border-radius:6px;
       transition:transform .22s ease, background .22s ease;
@@ -227,7 +195,7 @@
       display:flex;
       align-items:center;
       gap:10px;
-      padding:clamp(4px,0.8vh,12px) 0 clamp(3px,0.5vh,7px);
+      padding:clamp(6px,1vh,14px) 0 clamp(4px,.6vh,8px);
       border-bottom:1.5px solid #ccc;
     }
 
@@ -240,7 +208,7 @@
     }
 
     .menu-group-divider span{
-      font-size:clamp(8px,0.65vw,12px);
+      font-size:clamp(9px,.75vw,13px);
       font-weight:600;
       letter-spacing:.08em;
       text-transform:uppercase;
@@ -270,8 +238,8 @@
 
     .menu-item img,
     .menu-item svg{
-      width:clamp(42px,4.2vw,120px);
-      height:clamp(42px,4.2vw,120px);
+      width:clamp(56px,5.5vw,95px);
+      height:clamp(56px,5.5vw,95px);
       flex:0 0 auto;
       transition:transform .22s ease;
       display:block;
@@ -281,7 +249,9 @@
       object-fit:contain;
     }
 
-    /* ── ICON BALANCE ── */
+    /* ========================================= */
+    /* VISUAL ICON BALANCE */
+    /* ========================================= */
 
     .custom-icon{
       object-fit:contain;
@@ -289,26 +259,23 @@
       transition:transform .22s ease;
     }
 
-    .icon-hub{
-      transform:scale(2);
-    }
+    /* ONE GRC */
 
     .icon-grc{
-      transform:scale(1.25);
+      transform:scale(1.35);
     }
+
+    /* ACADEMY */
 
     .icon-academy{
-      transform:scale(1.8);
+      transform:scale(1.65);
     }
 
-    .menu-item:hover .icon-hub,
-    .m-menu-item:hover .icon-hub{
-      transform:scale(1.85);
-    }
+    /* HOVER */
 
     .menu-item:hover .icon-grc,
     .m-menu-item:hover .icon-grc{
-      transform:scale(1.35);
+      transform:scale(1.45);
     }
 
     .menu-item:hover .icon-academy,
@@ -320,7 +287,7 @@
       flex:0 1 auto;
       min-width:0;
       text-align:left;
-      font-size:clamp(16px,2vw,40px);
+      font-size:clamp(20px,2.4vw,42px);
       color:#111;
       line-height:1.1;
       white-space:nowrap;
@@ -340,13 +307,13 @@
       display:flex;
       align-items:center;
       justify-content:space-between;
-      padding:0 clamp(24px,4.5vw,110px) clamp(14px,3.2vh,52px);
+      padding:0 clamp(40px,5vw,120px) clamp(18px,3.5vh,55px);
     }
 
     .service-desk{
       display:flex;
       align-items:center;
-      gap:clamp(5px,0.5vw,11px);
+      gap:clamp(6px,.5vw,12px);
       text-decoration:none;
       color:inherit;
       cursor:pointer;
@@ -358,37 +325,23 @@
     }
 
     .service-desk img{
-      width:clamp(36px,3.4vw,68px);
-      height:clamp(36px,3.4vw,68px);
+      width:clamp(32px,3vw,58px);
+      height:clamp(32px,3vw,58px);
       object-fit:contain;
       flex:0 0 auto;
     }
 
     .service-text{
-      font-size:clamp(13px,1.15vw,22px);
+      font-size:clamp(12px,1vw,20px);
       font-weight:400;
       color:#333;
     }
 
     .footer-text{
-      font-size:clamp(11px,1.1vw,20px);
-      color:#aaa;
-      font-weight:300;
-      letter-spacing:0.01em;
+      font-size:clamp(13px,1.3vw,26px);
+      color:#888;
     }
 
-    .footer-text a{
-      color:inherit;
-      text-decoration:none;
-    }
-
-    /* ── RESPONSIVE BREAKPOINTS ──
-       All ranges use absolute positioning (same visual layout as default).
-       Only font sizes, position offsets, and panel widths are adjusted per range.
-       Fixes the 90%-zoom issue on 1024-1366px laptop screens.
-    */
-
-    /* Standard+ desktop: ≥1200px — larger brand/one text */
     @media (min-width:1200px){
 
       .brand-text{
@@ -404,11 +357,10 @@
       }
     }
 
-    /* Large desktop: ≥1441px */
     @media (min-width:1441px){
 
       .hero-right{
-        right:clamp(100px,6vw,160px);
+        right:clamp(60px,6vw,220px);
       }
 
       .menu-panel{
@@ -416,121 +368,25 @@
       }
 
       .menu-item{
-        gap:clamp(16px,1.8vw,48px);
+        gap:clamp(14px,1.5vw,42px);
         padding:clamp(10px,1.5vh,32px) 0;
       }
 
       .menu-item img,
       .menu-item svg{
-        width:clamp(55px,5.5vw,120px);
-        height:clamp(55px,5.5vw,120px);
+        width:clamp(40px,3vw,70px);
+        height:clamp(40px,3vw,70px);
       }
 
       .menu-item-label{
-        font-size:clamp(18px,1.6vw,32px);
-      }
-
-      .hero-left{
-        left:24%;
+        font-size:clamp(16px,1.4vw,26px);
       }
     }
 
-    /* Medium laptop: 1024px–1280px — PRIMARY 90%-zoom problem zone.
-       Reduce one-text & menu panel so nothing overlaps at 1280px. */
-    @media (min-width:1024px) and (max-width:1280px){
-
-      .hero-left{
-        left:16%;
-        top:42%;
-      }
-
-      .brand-text{
-        font-size:clamp(16px,2.2vw,32px);
-      }
-
-      .one-text{
-        font-size:clamp(80px,11.5vw,160px);
-      }
-
-      .desc-text{
-        font-size:clamp(11px,0.9vw,15px);
-      }
+    @media (max-width:1100px) and (min-width:769px){
 
       .hero-right{
-        right:clamp(60px,10vw,160px);
-      }
-
-      .menu-panel{
-        width:clamp(230px,27vw,380px);
-      }
-
-      .menu-item{
-        padding:clamp(7px,1.1vh,16px) 0;
-        gap:clamp(10px,1.1vw,20px);
-      }
-
-      .menu-item img,
-      .menu-item svg{
-        width:clamp(40px,4vw,62px);
-        height:clamp(40px,4vw,62px);
-      }
-
-      .menu-item-label{
-        font-size:clamp(15px,1.85vw,28px);
-      }
-
-      .hero-footer{
-        padding:0 clamp(30px,4vw,80px) clamp(14px,2.8vh,40px);
-      }
-    }
-
-    /* Small laptop / large tablet landscape: 769px–1023px */
-    @media (min-width:769px) and (max-width:1023px){
-
-      .hero-left{
-        left:8%;
-        top:44%;
-      }
-
-      .brand-text{
-        font-size:clamp(14px,1.8vw,22px);
-      }
-
-      .one-text{
-        font-size:clamp(60px,10vw,110px);
-      }
-
-      .desc-text{
-        font-size:clamp(10px,1vw,13px);
-        margin-left:65%;
-        width:35%;
-      }
-
-      .hero-right{
-        right:clamp(20px,4vw,60px);
-      }
-
-      .menu-panel{
-        width:clamp(200px,34vw,340px);
-      }
-
-      .menu-item{
-        padding:clamp(6px,1vh,12px) 0;
-        gap:clamp(8px,1.1vw,16px);
-      }
-
-      .menu-item img,
-      .menu-item svg{
-        width:clamp(34px,3.8vw,52px);
-        height:clamp(34px,3.8vw,52px);
-      }
-
-      .menu-item-label{
-        font-size:clamp(13px,1.8vw,22px);
-      }
-
-      .hero-footer{
-        padding:0 clamp(16px,3vw,56px) clamp(12px,2.5vh,30px);
+        right:clamp(20px,3.5vw,72px);
       }
     }
 
@@ -551,7 +407,6 @@
         display:flex;
         flex-direction:column;
         min-height:100vh;
-        min-height:100dvh;
         position:relative;
         background:#fff;
         overflow:hidden;
@@ -652,7 +507,6 @@
         text-decoration:none;
         color:inherit;
         display:block;
-        transition:all .22s ease;
       }
 
       .m-menu-item{
@@ -664,6 +518,10 @@
         border-radius:8px;
         transition:background .22s ease, transform .22s ease;
         cursor:pointer;
+      }
+
+      .m-menu-link{
+        transition:all .22s ease;
       }
 
       .m-menu-link:active .m-menu-item{
@@ -722,16 +580,20 @@
         display:block;
       }
 
-      .m-menu-item .icon-hub{
-        transform:scale(1.35);
+      .m-menu-item .icon-grc{
+        transform:scale(1.08);
       }
 
-      .m-menu-item .icon-grc{
-        transform:scale(1.25);
+      .m-menu-item:hover .icon-grc{
+        transform:scale(1.08);
       }
 
       .m-menu-item .icon-academy{
-        transform:scale(1.25);
+        transform:scale(1.18);
+      }
+
+      .m-menu-item:hover .icon-academy{
+        transform:scale(1.18);
       }
 
       .m-menu-link:active .m-menu-item img,
@@ -739,16 +601,12 @@
         transform:scale(1.1);
       }
 
-      .m-menu-link:active .m-menu-item .icon-hub{
-        transform:scale(1.45);
-      }
-
       .m-menu-link:active .m-menu-item .icon-grc{
-        transform:scale(1.35);
+        transform:scale(1.16);
       }
 
       .m-menu-link:active .m-menu-item .icon-academy{
-        transform:scale(1.35);
+        transform:scale(1.26);
       }
 
       .m-menu-label{
@@ -811,16 +669,9 @@
 
       .m-footer-text{
         font-size:12px;
-        color:#aaa;
+        color:#bbb;
         text-align:center;
         margin-top:10px;
-        font-weight:300;
-        letter-spacing:0.01em;
-      }
-
-      .m-footer-text a{
-        color:inherit;
-        text-decoration:none;
       }
     }
 
@@ -896,6 +747,7 @@
         font-size:11px;
         margin-top:8px;
       }
+
     }
 
   </style>
@@ -971,7 +823,7 @@
 
           <a href="https://onedatahub.cbqaglobal.co.id/masterdata" target="_blank" class="menu-link">
             <div class="menu-item">
-              <img src="assets/Icon_one_hub.png" alt="one hub" class="custom-icon icon-hub">
+              <img src="assets/Icon_one_hub.png" alt="one hub">
               <div class="menu-item-label">
                 <span>one </span><strong>hub</strong>
               </div>
@@ -1003,17 +855,49 @@
             </div>
           </a>
 
+          <a href="https://audit-q.cbqaglobal.co.id/" target="_blank" class="menu-link">
+            <div class="menu-item">
+
+              <svg class="icon-auditq" viewBox="0 0 64 64" stroke="#319EA9" fill="none" stroke-width="2.5">
+                <circle cx="30" cy="30" r="16"/>
+                <path d="M42 42l10 10"/>
+              </svg>
+
+              <div class="menu-item-label">
+                <span>audit</span><strong>Q</strong>
+              </div>
+
+            </div>
+          </a>
+
           <!-- ACADEMY -->
 
           <a href="https://academy.cbqaglobal.co.id/" target="_blank" class="menu-link">
             <div class="menu-item">
 
               <img src="assets/Icon_Training Icon.png"
-                   alt="one academy"
+                   alt="CBQA Global Academy"
                    class="custom-icon icon-academy">
 
               <div class="menu-item-label">
-                <span>one </span><strong>academy</strong>
+                <span>CBQA Global </span><strong>academy</strong>
+              </div>
+
+            </div>
+          </a>
+
+          <a href="https://pmaudit.cbqaglobal.co.id/index.php/signin" target="_blank" class="menu-link">
+            <div class="menu-item">
+
+              <svg class="icon-pm" viewBox="0 0 64 64" stroke="#319EA9" fill="none" stroke-width="2.5">
+                <circle cx="32" cy="32" r="8"/>
+                <path d="M32 12v6M32 46v6M12 32h6M46 32h6
+                M18 18l4 4M42 42l4 4
+                M18 46l4-4M42 22l4-4"/>
+              </svg>
+
+              <div class="menu-item-label">
+                <span>PM </span><strong>Tool</strong>
               </div>
 
             </div>
@@ -1027,17 +911,16 @@
 
     <div class="hero-footer">
       <a href="https://support.nexoratech.co/login" class="service-desk">
-        <img src="assets/Icon_service_desk .png" alt="Service Desk">
+        <img src="assets/Icon_service_desk%20.png" alt="Service Desk">
         <span class="service-text">Service Desk</span>
       </a>
 
       <div class="footer-text">
         <a href="https://www.cbqaglobal.com" target="_blank">
-          www.cbqaglobal.com
+        www.cbqaglobal.com
         </a>
-      </div>
     </div>
-
+    
   </div>
 
   <!-- ══════════════ MOBILE ══════════════ -->
@@ -1092,7 +975,7 @@
 
         <a href="https://onedatahub.cbqaglobal.co.id/masterdata" target="_blank" class="m-menu-link">
           <div class="m-menu-item">
-            <img src="assets/Icon_one_hub.png" alt="one hub" class="custom-icon icon-hub">
+            <img src="assets/Icon_one_hub.png" alt="one hub">
             <div class="m-menu-label">
               <span>one </span><strong>hub</strong>
             </div>
@@ -1117,11 +1000,37 @@
           </div>
         </a>
 
+        <a href="https://audit-q.cbqaglobal.co.id/" target="_blank" class="m-menu-link">
+          <div class="m-menu-item">
+            <svg class="icon-auditq" viewBox="0 0 64 64" stroke="#319EA9" fill="none" stroke-width="2.5">
+              <circle cx="30" cy="30" r="16"/>
+              <path d="M42 42l10 10"/>
+            </svg>
+            <div class="m-menu-label">
+              <span>audit</span><strong>Q</strong>
+            </div>
+          </div>
+        </a>
+
         <a href="https://academy.cbqaglobal.co.id/" target="_blank" class="m-menu-link">
           <div class="m-menu-item">
-            <img src="assets/Icon_Training Icon.png" alt="one academy" class="custom-icon icon-academy">
+            <img src="assets/Icon_Training Icon.png" alt="CBQA Global Academy" class="custom-icon icon-academy">
             <div class="m-menu-label">
-              <span>one </span><strong>academy</strong>
+              <span>CBQA Global </span><strong>Academy</strong>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://pmaudit.cbqaglobal.co.id/index.php/signin" target="_blank" class="m-menu-link">
+          <div class="m-menu-item">
+            <svg class="icon-pm" viewBox="0 0 64 64" stroke="#319EA9" fill="none" stroke-width="2.5">
+              <circle cx="32" cy="32" r="8"/>
+              <path d="M32 12v6M32 46v6M12 32h6M46 32h6
+              M18 18l4 4M42 42l4 4
+              M18 46l4-4M42 22l4-4"/>
+            </svg>
+            <div class="m-menu-label">
+              <span>PM </span><strong>Tool</strong>
             </div>
           </div>
         </a>
@@ -1129,18 +1038,17 @@
       </div>
 
       <!-- Service desk -->
-      <a href="https://support.nexoratech.co/login" target="_blank" class="m-service-desk">
-        <img src="assets/Icon_service_desk .png" alt="Service Desk">
+      <a href="mailto:servicedesk@cbqaglobal.com" class="m-service-desk">
+        <img src="assets/Icon_service_desk%20.png" alt="Service Desk">
         <span class="m-service-text">Service Desk</span>
       </a>
 
-      <div class="m-footer-text">
+      <div class="footer-text">
         <a href="https://www.cbqaglobal.com" target="_blank">
-          www.cbqaglobal.com
+            www.cbqaglobal.com
         </a>
-      </div>
-
-    </div>
+        </div>
+     
 
   </div>
 
